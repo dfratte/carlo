@@ -22,6 +22,8 @@ In order to do so, it executes different types of algorithms to determine which 
 Carlo builds on this idea by defining a very simple substitute algorithm. Instead of calculating server availability,
 the idea is to rely on an external service to determine the carbon intensity of the region in which a server is running.
 
+![carlo](./img/carlo-architecture.png)
+
 This way, the load balancer can select the server with the lowest carbon intensity i.e. the greenest electricity currently
 being used to power up those servers.
 
