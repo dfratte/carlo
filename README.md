@@ -27,7 +27,18 @@ the idea is to rely on an external service to determine the carbon intensity of 
 This way, the load balancer can select the server with the lowest carbon intensity i.e. the greenest electricity currently
 being used to power up those servers.
 
+**Note:** Servers in different regions are being represented by local sub-processes serving requests on specific ports. This design 
+decision contributes towards simplicity when deploying multiple backends, thus allowing for a rapid visualization of traffic
+load balancing in a local environment.
+
+For more information about the theory, design, trade-offs and assumptions made for this work, please take a look at the [article](https://medium.com/@drfratte/carlo-carbon-aware-load-balancing-f02982999b75)
+in which this gets further explained.
+
 ### How to run it?
+
+**Disclaimer:** for the context of GSF Hack '22 there are two different versions for this application in different branches
+* **main**: contains the version in which randomly generated carbon intensity values are assigned to different regions
+* **api-integration**: contains the version in which the Carbon Aware API is integrated and consumed by the algorithm
 
 Open up a terminal and go to the main directory of the application to run:
 
@@ -41,8 +52,8 @@ Open up another terminal tab, and hit the URL with curl:
 
 <code>curl http://localhost:8000</code>
 
-You should see some information being logged into the first terminal, and in
-the client terminal you'll se the carbon-aware response from the optimally
+You should see some information being logged into the first terminal (intermediate steps of the algorithm while choosing
+the best alternative), and in the client terminal you'll se the carbon-aware response from the optimally
 selected server:
 
 <code>Hello from [::]:3333! This is a carbon-aware server response</code>
