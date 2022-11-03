@@ -33,65 +33,65 @@ func main() {
 
 	ctx, cancelCtx := context.WithCancel(context.Background())
 
-	irelandEast := createBackendServer(ctx, "3333", mux)
-	irelandWest := createBackendServer(ctx, "3334", mux)
-	london := createBackendServer(ctx, "4444", mux)
-	paris := createBackendServer(ctx, "5555", mux)
+	ukEast := createBackendServer(ctx, "3333", mux)
+	ukWest := createBackendServer(ctx, "3334", mux)
+	france := createBackendServer(ctx, "4444", mux)
+	germany := createBackendServer(ctx, "5555", mux)
 
 	go func() {
-		err := irelandEast.ListenAndServe()
+		err := ukEast.ListenAndServe()
 		if errors.Is(err, http.ErrServerClosed) {
-			fmt.Printf("irelandEast closed\n")
+			fmt.Printf("ukEast closed\n")
 		} else if err != nil {
-			fmt.Printf("error listening for irelandEast: %s\n", err)
+			fmt.Printf("error listening for ukEast: %s\n", err)
 		}
 		cancelCtx()
 	}()
 	go func() {
-		err := irelandWest.ListenAndServe()
+		err := ukWest.ListenAndServe()
 		if errors.Is(err, http.ErrServerClosed) {
-			fmt.Printf("irelandWest closed\n")
+			fmt.Printf("ukWest closed\n")
 		} else if err != nil {
-			fmt.Printf("error listening for irelandWest: %s\n", err)
+			fmt.Printf("error listening for ukWest: %s\n", err)
 		}
 		cancelCtx()
 	}()
 	go func() {
-		err := london.ListenAndServe()
+		err := france.ListenAndServe()
 		if errors.Is(err, http.ErrServerClosed) {
-			fmt.Printf("london closed\n")
+			fmt.Printf("france closed\n")
 		} else if err != nil {
-			fmt.Printf("error listening for london: %s\n", err)
+			fmt.Printf("error listening for france: %s\n", err)
 		}
 		cancelCtx()
 	}()
 	go func() {
-		err := paris.ListenAndServe()
+		err := germany.ListenAndServe()
 		if errors.Is(err, http.ErrServerClosed) {
-			fmt.Printf("paris closed\n")
+			fmt.Printf("germany closed\n")
 		} else if err != nil {
-			fmt.Printf("error listening for paris three: %s\n", err)
+			fmt.Printf("error listening for germany three: %s\n", err)
 		}
 		cancelCtx()
 	}()
 
-	irelandServers := []server{
+	ukServers := []server{
 		CreateBackend("http://localhost:3333"),
 		CreateBackend("http://localhost:3334"),
 	}
 
-	parisServers := []server{
+	franceServers := []server{
 		CreateBackend("http://localhost:4444"),
 	}
 
-	londonServers := []server{
+	germanyServers := []server{
 		CreateBackend("http://localhost:5555"),
 	}
 
 	regions := []*region{
-		CreateRegion(irelandServers, 0, "eu-west-1"),
-		CreateRegion(parisServers, 0, "eu-west-2"),
-		CreateRegion(londonServers, 0, "eu-west-3"),
+		CreateRegion(ukServers, 0, "uksouth"),
+		CreateRegion(franceServers, 0, "francecentral"),
+		CreateRegion(germanyServers, 0, "germanywestcentral"),
 	}
 
 	lb := NewLoadBalancer(regions)

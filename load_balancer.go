@@ -19,13 +19,12 @@ func NewLoadBalancer(regions []*region) *loadBalancer {
 }
 
 func (lb *loadBalancer) HandleRequest(rw http.ResponseWriter, r *http.Request) {
+	lb.carbonAwareClient.CalculateRegionIntensity(lb.availableRegions)
 	backend, _ := lb.GetLeastCarbonIntenseAvailableServer()
 	backend.Serve(rw, r)
 }
 
 func (lb *loadBalancer) GetLeastCarbonIntenseAvailableServer() (server, *region) {
-	lb.carbonAwareClient.CalculateRegionIntensity(lb.availableRegions)
-
 	fmt.Printf("\n---carbon intensity for all available regions---\n")
 	for _, region := range lb.availableRegions {
 		if region != nil {
