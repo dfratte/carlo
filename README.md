@@ -1,7 +1,7 @@
 # Carlo
 An experimentally naive carbon-aware Load Balancer
 
-![badge](https://img.shields.io/badge/green-tech-brightgreen)
+![Build](https://github.com/dfratte/carlo/actions/workflows/build.yaml/badge.svg)
 
 ### Introduction
 
