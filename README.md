@@ -53,4 +53,4 @@ Contributions are welcome in the form of feedback, opening GitHub issues, or sub
 
 ### Author
 
-Crafted with 💚 by [Daniel Fratte](https://www.linkedin.com/in/drfratte/)
+Crafted with 💚 by [Daniel Fratte](https://www.linkedin.com/in/drfratte/) during the [Green Software Foundation Hack '22](https://taikai.network/gsf/hackathons/carbonhack22/projects/cl97cncoo69255701uvnu2z8sj8/idea)
