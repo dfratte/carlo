@@ -1,7 +1,7 @@
 # Carlo
 An experimentally naive carbon-aware Load Balancer
 
-![Build](https://github.com/dfratte/carlo/actions/workflows/build.yaml/badge.svg)
+![Build](https://github.com/dfratte/carlo/actions/workflows/ci.yaml/badge.svg)
 
 ### Introduction
 
